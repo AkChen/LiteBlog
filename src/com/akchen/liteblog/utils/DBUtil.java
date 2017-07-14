@@ -11,10 +11,10 @@ import java.sql.Statement;
 
 public class DBUtil {
 	
-	private static String url = "jdbc:mysql://127.0.0.1:3306/drwithyoudb?userUnicode=true&amp;"
+	private static String url = "jdbc:mysql://127.0.0.1:3306/liteblogdb?userUnicode=true&amp;"
         + "characterEncoding=utf8";
-	private static String username = "drwithyou";
-	private static String password = "drwithyou";
+	private static String username = "liteblog";
+	private static String password = "cd5211314";
 	
 	static{
 	    // ��������
