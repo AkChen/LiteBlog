@@ -47,7 +47,7 @@ public class Lts_Register extends HttpServlet {
 			// TODO Auto-generated catch block
 			System.out.println(e.code);
 			System.out.println(e.description);
-			request.getSession().setAttribute("redirect_msg", "注册失败.错误代码"+e.code);
+			request.getSession().setAttribute("redirect_msg", "注册失败.错误代码"+e.code+"错误原因:"+e.description);
 			request.getSession().setAttribute("redirect_path", "signup.jsp");
 			response.sendRedirect("redirect.jsp");
 			return ;

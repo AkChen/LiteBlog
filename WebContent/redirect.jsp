@@ -25,7 +25,7 @@
 	<meta name="twitter:image" content="" />
 	<meta name="twitter:url" content="" />
 	<meta name="twitter:card" content="" />
-     <meta http-equiv="refresh" content="1;url=<%=session.getAttribute("redirect_path")%>">
+     <meta http-equiv="refresh" content="2;url=<%=session.getAttribute("redirect_path")%>">
 	<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 	<link rel="shortcut icon" href="favicon.ico">
 
@@ -63,7 +63,7 @@
 						</div>
 						<div class="form-group">
 							
-							<a href="<%=session.getAttribute("redirect_path") %>">页面将在一秒后跳转</a>
+							<a href="<%=session.getAttribute("redirect_path") %>">页面将在2秒后跳转</a>
 						</div>
 						
 						
