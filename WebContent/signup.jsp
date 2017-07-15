@@ -1,4 +1,4 @@
-﻿
+﻿<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -7,10 +7,10 @@
 	<head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Minimal and Clean Sign up / Login and Forgot Form by FreeHTML5.co</title>
+	<title>Lite Blog</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="description" content="Free HTML5 Template by FreeHTML5.co" />
-	<meta name="keywords" content="free html5, free template, free bootstrap, html5, css3, mobile first, responsive" />
+	<meta name="description" content="Lite Blog" />
+	<meta name="keywords" content="Lite Blog" />
 	
 
   
@@ -37,6 +37,7 @@
 
 	<!-- Modernizr JS -->
 	<script src="js/modernizr-2.6.2.min.js"></script>
+	<script src="js/md5.js"></script>
     <script type="text/javascript">
          function checkInput()
          {
@@ -48,7 +49,7 @@
                  alert("请输入用户名")
                  return false;
              }
-             if (username >= 32)
+             if (username.length >= 32)
              {
                  alert("用户名过长(32位)")
                  return false;
@@ -70,8 +71,16 @@
                  alert("密码太短(大于8位)");
                  return false;
              }
-
-             return true;
+             password = hex_md5(password + "").toUpperCase();
+            
+             document.getElementById("hidden_username").value = username;
+             document.getElementById("hidden_password").value = password;
+             var form =  document.getElementById("hidden_form");
+             form.action = "Lts_Register"
+             form.method = "post";
+             form.submit();
+             
+             return false;
          }
          function checkUsername()
          {
@@ -93,8 +102,7 @@
 					
 
 					<!-- Start Sign In Form -->
-					<form action="lt_signup" method="post" class="fh5co-form animate-box" data-animate-effect="fadeInLeft">
-						
+					<form class="fh5co-form animate-box" data-animate-effect="fadeInLeft">
                         <img src="images/logo.png" />
                         <h2>注册</h2>
 						
@@ -112,13 +120,19 @@
 						</div>
 						
 						<div class="form-group">
-							<p>已经注册 ? <a href="login.html">登录</a></p>
+							<p>已经注册 ? <a href="login.jsp">登录</a></p>
 						</div>
 						<div class="form-group">
-							<input type="submit" value="注册" class="btn btn-primary" onclick="return check()">
+							<input type="submit" value="注册" class="btn btn-primary" onclick="return checkInput()">
 						</div>
+						
 					</form>
 					<!-- END Sign In Form -->
+					<!-- Hidden Form -->
+					<form method="post"  id="hidden_form">
+					<input type="hidden" id="hidden_username" name="username">
+					<input type="hidden" id="hidden_password" name="password">
+					</form>
 
 
 				</div>

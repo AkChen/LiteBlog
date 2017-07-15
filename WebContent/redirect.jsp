@@ -1,4 +1,4 @@
-﻿
+﻿<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -25,17 +25,20 @@
 	<meta name="twitter:image" content="" />
 	<meta name="twitter:url" content="" />
 	<meta name="twitter:card" content="" />
-
+     <meta http-equiv="refresh" content="1;url=<%=session.getAttribute("redirect_path")%>">
 	<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 	<link rel="shortcut icon" href="favicon.ico">
-    <link rel='stylesheet' href='css/css.css'>
+
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700,300' rel='stylesheet' type='text/css'>
+	
 	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/animate.css">
 	<link rel="stylesheet" href="css/style.css">
 
-
 	<!-- Modernizr JS -->
 	<script src="js/modernizr-2.6.2.min.js"></script>
+	<script src="js/md5.js"></script>
+    
 	<!-- FOR IE9 below -->
 	<!--[if lt IE 9]>
 	<script src="js/respond.min.js"></script>
@@ -51,32 +54,33 @@
 					
 
 					<!-- Start Sign In Form -->
-					<form action="lt_login" method="post" class="fh5co-form animate-box" data-animate-effect="fadeInLeft">
-                        <img src="images/logo.png" />
-						<h2>登录</h2>
+					<form class="fh5co-form animate-box" data-animate-effect="fadeInLeft">
+                        
+                        <h2>提示</h2>
+						
 						<div class="form-group">
-							<label for="username" class="sr-only">Username</label>
-							<input type="text" class="form-control" id="username" name="username" placeholder="请输入用户名" autocomplete="off">
+							<p><%=session.getAttribute("redirect_msg")%></p>
 						</div>
 						<div class="form-group">
-							<label for="password" class="sr-only">Password</label>
-                            <input type="password" class="form-control" id="password" name="password" placeholder="请输入密码" autocomplete="off">
+							
+							<a href="<%=session.getAttribute("redirect_path") %>">页面将在一秒后跳转</a>
 						</div>
-				
-						<div class="form-group">
-							<p>没有注册? <a href="signup.jsp">注册</a> </p>
-						</div>
-						<div class="form-group">
-							<input type="submit" value="登陆" class="btn btn-primary">
-						</div>
+						
+						
 					</form>
 					<!-- END Sign In Form -->
+					<!-- Hidden Form -->
+					<form method="post"  id="hidden_form">
+					<input type="hidden" id="hidden_username" name="username">
+					<input type="hidden" id="hidden_password" name="password">
+					</form>
+
 
 				</div>
 			</div>
-			<div class="row" style="padding-top: 60px; clear: both;">
-				<div class="col-md-12 text-center"><p><small>&copy; All Rights Reserved. <a href="http://blog.akchen.cn" target="_blank" title="">LiteBlog</a></small></p></div>
-			</div>
+            <div class="row" style="padding-top: 60px; clear: both;">
+                <div class="col-md-12 text-center"><p><small>&copy; All Rights Reserved. <a href="http://blog.akchen.cn" target="_blank" title="">LiteBlog</a></small></p></div>
+            </div>
 		</div>
 	
 	<!-- jQuery -->
