@@ -32,8 +32,34 @@
 	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/animate.css">
 	<link rel="stylesheet" href="css/style.css">
-
-
+    <script src="js/md5.js"></script>
+     <script type="text/javascript">
+         function checkInput()
+         {
+        	 
+             var username = document.getElementById("username").value;
+             var password = document.getElementById("password").value;
+             if(username.length==0)
+             {
+            	 alert("请输入用户名!")
+            	 return false;
+             }
+             if(password.length==0)
+             {
+            	 alert("请输入密码!")
+            	 return false;
+             }
+             password = hex_md5(password + "").toUpperCase();
+             
+             document.getElementById("hidden_username").value = username;
+             document.getElementById("hidden_password").value = password;
+             var form =  document.getElementById("hidden_form");
+             form.action = "Lts_Login"
+             form.method = "post";
+             form.submit();
+             return false;
+         }
+    </script>
 	<!-- Modernizr JS -->
 	<script src="js/modernizr-2.6.2.min.js"></script>
 	<!-- FOR IE9 below -->
@@ -51,7 +77,7 @@
 					
 
 					<!-- Start Sign In Form -->
-					<form action="lt_login" method="post" class="fh5co-form animate-box" data-animate-effect="fadeInLeft">
+					<form  class="fh5co-form animate-box" data-animate-effect="fadeInLeft">
                         <img src="images/logo.png" />
 						<h2>登录</h2>
 						<div class="form-group">
@@ -67,11 +93,17 @@
 							<p>没有注册? <a href="signup.jsp">注册</a> </p>
 						</div>
 						<div class="form-group">
-							<input type="submit" value="登陆" class="btn btn-primary">
+							<input type="submit" value="登陆" class="btn btn-primary" onclick="return checkInput()">
 						</div>
 					</form>
 					<!-- END Sign In Form -->
-
+                   
+					
+					<!-- Hidden Form -->
+					<form method="post"  id="hidden_form">
+					<input type="hidden" id="hidden_username" name="username">
+					<input type="hidden" id="hidden_password" name="password">
+					</form>
 				</div>
 			</div>
 			<div class="row" style="padding-top: 60px; clear: both;">

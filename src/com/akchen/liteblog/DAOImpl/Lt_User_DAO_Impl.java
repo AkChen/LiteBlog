@@ -1,6 +1,7 @@
 package com.akchen.liteblog.DAOImpl;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import com.akchen.liteblog.DAO.*;
@@ -55,14 +56,46 @@ public class Lt_User_DAO_Impl implements Lt_User_DAO {
 	}
 
 	@Override
-	public boolean login(Lt_User user) throws Lt_Blog_Exception {
+	public Lt_User login(Lt_User user) throws Lt_Blog_Exception {
 		// TODO Auto-generated method stub
 		Connection con = DBUtil.getConnection();
 		PreparedStatement state = null; 
-		String sql = "select username from lt_user where username=? and password = ?";
-		
-		
-		return false;
+		ResultSet rs = null;
+		String sql = "select type from lt_user where username=? and password = ?";
+		try {
+			state = con.prepareStatement(sql);
+			state.setString(1, user.getUsername());
+			state.setString(2, user.getPasword());
+			rs = state.executeQuery();
+			boolean hasRs = rs.next();
+			
+			if(!hasRs)
+				return null;
+			user.setType(rs.getInt(1));
+			return user;
+		} catch (SQLException e) {
+			Lt_Blog_Exception be = new Lt_Blog_Exception();
+			be.code = Lt_Blog_Exception.LOGIN_ERROR;
+			be.description = "登录内部错误;";
+			
+			throw be;
+		}
+		finally
+		{
+			try {
+				state.close();;
+				if(rs!=null)
+					rs.close();
+				con.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				Lt_Blog_Exception be = new Lt_Blog_Exception();
+				be.code = Lt_Blog_Exception.LOGIN_ERROR;
+				be.description = "登录内部错误;";
+				
+				throw be;
+			}
+		}
 	}
 
 }
