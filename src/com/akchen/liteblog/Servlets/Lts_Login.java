@@ -64,7 +64,7 @@ public class Lts_Login extends HttpServlet {
 		
 		//jump
 		request.getSession().setAttribute("redirect_msg", "登录成功!");
-		request.getSession().setAttribute("redirect_path", "index.html");
+		request.getSession().setAttribute("redirect_path", "home.html");
 		response.sendRedirect("redirect.jsp");
 	}
 

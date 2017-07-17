@@ -98,4 +98,10 @@ public class Lt_User_DAO_Impl implements Lt_User_DAO {
 		}
 	}
 
+	@Override
+	public boolean isVeifyUser(Lt_User user) throws Lt_Blog_Exception {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }
