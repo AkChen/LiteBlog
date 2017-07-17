@@ -120,7 +120,7 @@
 	<!-- Waypoints -->
 	<script src="js/jquery.waypoints.min.js"></script>
 	<!-- Main JS -->
-	<script src="js/main.js"></script>
+	<script src="js/login_main.js"></script>
 
 	</body>
 </html>
